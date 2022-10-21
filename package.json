@@ -1,0 +1,27 @@
+{
+  "name": "presentation-archive",
+  "version": "0.0.1",
+  "description": "Published Papers and Slide Presentations",
+  "author": "@thegurumojo",
+  "license": "ISC",
+  "main": "index.js",
+  "dependencies": {
+    "reveal.js": "4.x"
+  },
+  "engines": {
+    "node": "18.x"
+  },
+  "scripts": {
+    "start": "node .",
+    "test": "exit 1"
+  },
+  "browserslist": "> 2%, not dead",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gurumojo/presentation-archive.git"
+  },
+  "homepage": "https://github.com/gurumojo/presentation-archive#readme",
+  "bugs": {
+    "url": "https://github.com/gurumojo/presentation-archive/issues"
+  }
+}
