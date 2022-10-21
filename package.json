@@ -1,11 +1,14 @@
 {
   "name": "presentation-archive",
-  "version": "0.0.1",
-  "description": "Published Papers and Slide Presentations",
+  "version": "0.0.2",
+  "description": "Published Papers and Slides",
   "author": "@thegurumojo",
   "license": "ISC",
   "main": "index.js",
   "dependencies": {
+    "cool-ascii-faces": "1.x",
+    "ejs": "3.x",
+    "express": "4.x",
     "reveal.js": "4.x"
   },
   "engines": {

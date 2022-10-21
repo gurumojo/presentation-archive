@@ -1,53 +1,16 @@
-const { exec } = require('child_process')
-const { cp } = require('fs')
-const { resolve } = require('path')
+const cool = require('cool-ascii-faces')
+const express = require('express')
+const path = require('path')
+const PORT = process.env.PORT || 8000
 
-let img = resolve(__dirname, 'images')
-let igx = resolve(__dirname, 'node_modules/reveal.js/images')
-let src = resolve(__dirname, 'archive')
-let dst = resolve(__dirname, 'node_modules/reveal.js')
-
-function copy() {
-	cp(img, igx, { recursive: true }, (error, ...args) => {
-		console.log({ args, error, img, igx })
-	})
-	cp(src, dst, { recursive: true }, (error, ...args) => {
-		console.log({ args, error, dst, src })
-	})
-}
-
-exec('npm ci', (error, stdout, stderr) => {
-  if (error) {
-    console.error(error)
-    return
-  }
-  console.error(stderr)
-  console.log(stdout)
-  console.log()
-  console.log('...')
-
-  copy()
-
-  process.chdir(dst)
-  console.log(process.cwd())
-
-  exec('npm i', (error, stdout, stderr) => {
-    if (error) {
-      console.error(error)
-      return
-    }
-    console.error(stderr)
-    console.log(stdout)
-
-    // npm start -- --port=8001
-    exec('npm start', (error, stdout, stderr) => {
-      if (error) {
-        console.error(error)
-        return
-      }
-      console.error(stderr)
-      console.log(stdout)
-    })
-  })
-})
+express()
+	.use(express.static(path.join(__dirname, 'archive')))
+	.use('/image', express.static(path.join(__dirname, 'image')))
+	.use('/dist', express.static(path.join(__dirname, 'node_modules/reveal.js/dist')))
+	.use('/plugin', express.static(path.join(__dirname, 'node_modules/reveal.js/plugin')))
+	.set('views', path.join(__dirname, 'view'))
+	.set('view engine', 'ejs')
+	.get('/', (req, res) => res.render('index'))
+	.get('/cool', (req, res) => res.send(cool()))
+	.listen(PORT, () => console.log(`Listening on ${ PORT }`))
 
