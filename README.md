@@ -14,6 +14,30 @@ application deployment hosting, and an HTML presentation framework called
 free container apps or alternatives to other presentation slide solutions!
 
 
+prerequisites
+-------------
+
+You'll need to have `node` and `heroku` installed and running locally.
+
+
+usage
+-----
+
+Setting the environment variable `PORT` allows for configurable access to a
+local demo:
+```
+PORT=5000 npm run demo
+heroku local
+...
+# http://localhost:5000/
+```
+
+To start the service:
+```
+npm start
+```
+
+
 contact
 -------
 

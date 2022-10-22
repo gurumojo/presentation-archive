@@ -1,8 +1,8 @@
 {
   "name": "presentation-archive",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Published Papers and Slides",
-  "author": "@thegurumojo",
+  "author": "gurumojo",
   "license": "ISC",
   "main": "index.js",
   "dependencies": {
@@ -15,6 +15,7 @@
     "node": "18.x"
   },
   "scripts": {
+    "demo": "heroku local",
     "start": "node .",
     "test": "exit 1"
   },
