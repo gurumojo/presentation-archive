@@ -1,0 +1,7 @@
+<h2>index</h2>
+<ul>
+	<% files.forEach((file) => { %>
+		<li><a href="/image/<%= file.name %>"><%= file.name %></a></li>
+	<% }) %>
+</ul>
+<a alt="home" href="/">home</a>
