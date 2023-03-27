@@ -1,6 +1,6 @@
 {
   "name": "presentation-archive",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Published Papers and Slides",
   "author": "gurumojo",
   "license": "ISC",
@@ -9,6 +9,7 @@
     "cool-ascii-faces": "1.x",
     "ejs": "3.x",
     "express": "4.x",
+    "plotly.js-dist": "2.x",
     "reveal.js": "4.x"
   },
   "engines": {

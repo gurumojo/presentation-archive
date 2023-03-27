@@ -1,0 +1,273 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="dist/reset.css">
+		<link rel="stylesheet" href="dist/reveal.css">
+		<link rel="stylesheet" href="dist/theme/moon.css">
+		<link rel="stylesheet" href="plugin/highlight/monokai.css">
+
+		<style>
+			.apa {
+				margin: 1em;
+			}
+			.apa, .reveal blockquote {
+				text-align: left;
+			}
+			.reveal blockquote {
+				padding: 1em;
+			}
+			p, blockquote {
+				font-size: .5em;
+			}
+			.reveal .plain {
+				color: rgb(147, 161, 161);
+			}
+		</style>
+
+		<title>Research Methods Presentation</title>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+					<div class="r-fit-text">
+Research Methods Presentation
+					</div>
+					<div class="r-fit-text">
+We Administered a Survey and Captured Data
+					</div>
+				</section>
+				<section>
+<div id="chart-a"></div>
+				</section>
+				<section>
+<div id="chart-b"></div>
+				</section>
+				<section data-background-image="./image/equitable-treatment.jpg" data-background-size="98%">
+					<div>
+						<p>
+<strong>References</strong>
+						</p>
+						<p>
+Larson, M. P., et al (2023). <em>Research Methods: Mixed Data Analysis</em><br />[<a class="plain" href="./research-presentation.pdf">Unpublished manuscript</a>]. Transpersonal Wilderness Therapy, Naropa University.
+						</p>
+					</div>
+					<a href="/">
+						<div style="display:block; padding: 100%"></div>
+					</a>
+				</section>
+			</div>
+		</div>
+
+		<script src="dist/reveal.js"></script>
+		<script src="plugin/notes/notes.js"></script>
+		<script src="plugin/markdown/markdown.js"></script>
+		<script src="plugin/highlight/highlight.js"></script>
+		<script src="chart/plotly.js"></script>
+		<script src="./research-data.js"></script>
+		<script src="./research-survey.js"></script>
+		<script>
+			Reveal.initialize({
+				hashOneBasedIndex: true,
+				hash: true,
+				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
+			})
+			let chartA = document.getElementById('chart-a')
+			let chartB = document.getElementById('chart-b')
+			let plotA = []
+			let plotB = []
+			let quantitative = {
+				experience: 'Have you taken psychedelics?',
+				resource: 'Do you use nature as a psychological resource?',
+				meaning: 'On a scale of 1 to 5, how meaningful was the experience?',
+				connection: 'On a scale of 1 to 5, how connected do you feel to the natural world today?',
+				impact: 'On a scale of 1 to 5, how much have psychedelics impacted your use of nature as a psychological resource?'
+			}
+			let qualitative = {
+				setting: 'Describe the setting of your most meaningful psychedelic experience?'
+			}
+			let question = 'What are the effects of a natural setting on psychedelic experiences?'
+			// data.forEach(o => {
+			// 	let experienced = o[quantitative.experience] === 'Yes' ? 1 : 0
+			// 	let resourced = o[quantitative.resource] === 'Yes' ? 1 : 0
+			// 	let name = `(${experienced}, ${resourced}, ${o[quantitative.connection]})`
+			// 	let set = { name, mode: 'markers', type: 'scatter', x: [], y: [] }
+			// 	set.x.push(...[
+			// 		o[quantitative.meaning],
+			// 		o[quantitative.impact],
+			// 		o[quantitative.connection]
+			// 	])
+			// 	set.y.push(...[
+			// 		experienced,
+			// 		resourced,
+			// 		experienced + resourced
+			// 	])
+			// 	if(!experienced) {
+			// 		set.xaxis = 'x2'
+			// 		set.yaxis = 'y2'
+			// 	}
+			// 	plotB.push(set)
+			// })
+			// Plotly.newPlot(chartB, plotB, layout)
+			let scale = ['meaning', 'impact', 'connection']
+			let trace = {
+				meaning: {
+					x: ['Experienced', 'Resourced', 'Both', 'Neither'],
+					y: [[], [], [], []],
+					name: 'Meaning',
+					type: 'scatter',
+					mode: 'markers+text',
+					marker: { size: 12 },
+					text: Array(4),
+					textposition: 'bottom center',
+				},
+				impact: {
+					x: ['Experienced', 'Resourced', 'Both', 'Neither'],
+					y: [[], [], [], []],
+					name: 'Impact',
+					type: 'scatter',
+					mode: 'markers+text',
+					marker: { size: 12 },
+					text: Array(4),
+					textposition: 'bottom center',
+				},
+				connection: {
+					x: ['Experienced', 'Resourced', 'Both', 'Neither'],
+					y: [[], [], [], []],
+					name: 'Connection',
+					type: 'scatter',
+					mode: 'markers+text',
+					marker: { size: 12 },
+					text: Array(4),
+					textposition: 'bottom center',
+				}
+			}
+			data.forEach(response => {
+				let experienced = response[quantitative.experience] === 'Yes' ? 1 : 0
+				let resourced = response[quantitative.resource] === 'Yes' ? 1 : 0
+				let target = experienced + resourced
+				switch (target) {
+					case 1:
+						if (experienced) {
+							trace.meaning.y[0].push(response[quantitative.meaning])
+							trace.impact.y[0].push(response[quantitative.impact])
+							trace.connection.y[0].push(response[quantitative.connection])
+						} else {
+							trace.meaning.y[1].push(response[quantitative.meaning])
+							trace.impact.y[1].push(response[quantitative.impact])
+							trace.connection.y[1].push(response[quantitative.connection])
+						}
+						break;
+					case 2:
+						trace.meaning.y[2].push(response[quantitative.meaning])
+						trace.impact.y[2].push(response[quantitative.impact])
+						trace.connection.y[2].push(response[quantitative.connection])
+						break;
+					default:
+						trace.meaning.y[3].push(response[quantitative.meaning])
+						trace.impact.y[3].push(response[quantitative.impact])
+						trace.connection.y[3].push(response[quantitative.connection])
+				}
+			})
+            scale.forEach(q => {
+				[0,1,2,3].forEach(z => {
+					trace[q].text[z] = trace[q].y[z].length
+					trace[q].y[z] =
+						trace[q].y[z].reduce((o, x) => o + x, 0) / trace[q].text[z]
+				})
+			})
+			plotA.push(trace.meaning, trace.impact, trace.connection)
+			Plotly.newPlot(chartA, plotA, {
+				scattermode: 'group',
+				scattergap: 0.5,
+				title: 'Grouped by Experience',
+				yaxis: { title: 'Ratings', range: [0.5, 5.5] }
+			})
+
+			let words = hash.find(x => Array.isArray(x[qualitative.setting]))
+			let text = words[qualitative.setting]
+			let counts = text.map(x => x.split(' ').length)
+			let regex = /[^0-9a-z ]/gi
+			let nixed = [
+				'','a','an','the','of','it','in','and','or','by','on',
+				'while', 'was', 'there', 'with', 'to', 'for'
+			]
+			let rank = {}
+			function transform (text) {
+				let words = text.split(' ').reduce((o, x) => {
+					if (nixed.indexOf(x) === -1) {
+						rank[x] = { word: x, count: (rank[x] || {count:0}).count +1 }
+						o.push(x)
+					}
+					return o
+				}, [])
+				return words.join(' ')
+			}
+			words = text.reduce((o, x) => {
+				let t = x.toLowerCase().replaceAll(regex, '')
+				if (t) o.push(transform(t))
+				return o
+			}, [])
+			rank = Object.keys(rank).reduce((o, x) => {
+				o.push(rank[x])
+				return o
+			}, [])
+			.sort((a, b) => a.word > b.word)
+			rank = rank.reduce((o, x, i) => {
+				if (!!rank[i+1] && rank[i+1].word.indexOf(x.word) === 0 && x.word.length >1) {
+					rank[i+1].word = `${rank[i+1].word}|${x.word}`
+					rank[i+1].count++
+				} else {
+					o.push(x)
+				}
+				return o
+			}, [])
+			.sort((a, b) => a.word.indexOf('|') > b.word.indexOf('|'))
+			.sort((a, b) => a.count < b.count)
+			let a = {
+				x: [12,10,8,6,4],
+				y: [9,8,8,8,8],
+				mode: 'markers+text',
+				marker: {
+					// color: [],
+					opacity: [1,.8,.8,.8,.8],
+					size: [90,50,50,50,50]
+				},
+				textposition: 'bottom center',
+				text: rank.slice(0,5).map(x => x.word)
+			}
+			let b = {
+				x: [11,9,7,5,3],
+				y: [6,6,6,6,6],
+				mode: 'markers+text',
+				marker: {
+					// color: [],
+					opacity: [.7,.7,.7,.7,.7],
+					size: [50,50,50,50,50]
+				},
+				textposition: 'bottom center',
+				text: rank.slice(5,10).map(x => x.word)
+			}
+			let c = {
+				x: [9,7,5,3,1],
+				y: [4,4,4,4,4],
+				mode: 'markers+text',
+				marker: {
+					// color: [],
+					opacity: [.4,.4,.4,.4,.4],
+					size: [30,30,30,30,30]
+				},
+				textposition: 'bottom center',
+				text: rank.slice(10,15).map(x => x.word)
+			}
+			plotB.push(a, b, c)
+			Plotly.newPlot(chartB, plotB, {
+				title: 'Word Weight',
+				showlegend: false
+			})
+		</script>
+	</body>
+</html>

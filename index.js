@@ -15,6 +15,7 @@ readdir(join(__dirname, 'image'), { withFileTypes: true }, (error, array) => {
 express()
 	.use(express.static(join(__dirname, 'archive')))
 	.use('/image', express.static(join(__dirname, 'image')))
+	.use('/chart', express.static(join(__dirname, 'node_modules/plotly.js-dist')))
 	.use('/dist', express.static(join(__dirname, 'node_modules/reveal.js/dist')))
 	.use('/plugin', express.static(join(__dirname, 'node_modules/reveal.js/plugin')))
 	.set('etag', false)
