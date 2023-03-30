@@ -41,6 +41,14 @@ We Administered a Survey and Captured Data
 					</div>
 				</section>
 				<section>
+					<div class="r-fit-text">
+Some of the Wilderness Cohort were wondering....
+					</div>
+					<div class="r-fit-text">
+What are the effects of a natural setting on psychedelic experiences?
+					</div>
+				</section>
+				<section>
 <div id="chart-a"></div>
 				</section>
 				<section>
@@ -55,7 +63,7 @@ We Administered a Survey and Captured Data
 <strong>References</strong>
 						</p>
 						<p>
-Larson, M. P., et al (2023). <em>Research Methods: We Administered a Survey and Captured Data</em><br />[<a class="plain" href="./research-presentation.pdf">Unpublished manuscript</a>]. Transpersonal Wilderness Therapy, Naropa University.
+Gibson, E., Carranza, J., Meadows, K & Larson, M. P. (2023). <em>Research Methods: We Administered a Survey and Captured Data</em><br />[<a class="plain" href="./research-presentation.pdf">Unpublished manuscript</a>]. Transpersonal Wilderness Therapy, Naropa University.
 						</p>
 					</div>
 					<a href="/">
@@ -96,28 +104,6 @@ Larson, M. P., et al (2023). <em>Research Methods: We Administered a Survey and 
 				setting: 'Describe the setting of your most meaningful psychedelic experience?'
 			}
 			let question = 'What are the effects of a natural setting on psychedelic experiences?'
-			// data.forEach(o => {
-			// 	let experienced = o[quantitative.experience] === 'Yes' ? 1 : 0
-			// 	let resourced = o[quantitative.resource] === 'Yes' ? 1 : 0
-			// 	let name = `(${experienced}, ${resourced}, ${o[quantitative.connection]})`
-			// 	let set = { name, mode: 'markers', type: 'scatter', x: [], y: [] }
-			// 	set.x.push(...[
-			// 		o[quantitative.meaning],
-			// 		o[quantitative.impact],
-			// 		o[quantitative.connection]
-			// 	])
-			// 	set.y.push(...[
-			// 		experienced,
-			// 		resourced,
-			// 		experienced + resourced
-			// 	])
-			// 	if(!experienced) {
-			// 		set.xaxis = 'x2'
-			// 		set.yaxis = 'y2'
-			// 	}
-			// 	plotB.push(set)
-			// })
-			// Plotly.newPlot(chartB, plotB, layout)
 			let scale = ['meaning', 'impact', 'connection']
 			let trace = {
 				meaning: {
@@ -190,6 +176,8 @@ Larson, M. P., et al (2023). <em>Research Methods: We Administered a Survey and 
 				scattermode: 'group',
 				scattergap: 0.5,
 				title: 'Grouped by Experience',
+				width: 900,
+				height: 600,
 				yaxis: { title: 'Ratings', range: [0.5, 5.5] }
 			})
 
@@ -274,33 +262,13 @@ Larson, M. P., et al (2023). <em>Research Methods: We Administered a Survey and 
 			plotB.push(a, b, c)
 			Plotly.newPlot(chartB, plotB, {
 				title: 'Word Weight',
-				showlegend: false
+				showlegend: false,
+				width: 900,
+				height: 600,
 			})
 
 			<!-- ========================================================= -->
 
-			// plotC = codes.reduce((o, x) => {
-			// 	let labels = x.sample.map(z => x.name)
-			// 	let counts = x.sample.map(z => x.sample.length)
-			// 	o.push({
-			// 		x: labels,
-			// 		y: counts,
-			// 		name: x.name,
-			// 		type: 'scatter',
-			// 		mode: 'markers+text',
-			// 		marker: { size: 12 },
-			// 		text: x.sample,
-			// 		textposition: 'bottom center',
-			// 	})
-			// 	return o
-			// }, []).sort((a,b) => a.name > b.name)
-			// Plotly.newPlot(chartC, plotC, {
-			// 	scattermode: 'group',
-			// 	scattergap: 0.5,
-			// 	showlegend: false,
-			// 	title: 'Grouped by Codes',
-			// 	yaxis: { title: 'Samples', range: [0.5, 9.5] }
-			// })
 			plotC = codes.reduce((o, x) => {
 				let labels = x.sample.map(z => x.name)
 				let counts = x.sample.map(z => x.sample.length)
@@ -317,7 +285,9 @@ Larson, M. P., et al (2023). <em>Research Methods: We Administered a Survey and 
 				barmode: 'relative',
 				showlegend: false,
 				title: 'Grouped by Codes',
-				yaxis: { title: 'Samples' }
+				yaxis: { title: 'Samples' },
+				width: 900,
+				height: 600,
 			})
 		</script>
 	</body>
