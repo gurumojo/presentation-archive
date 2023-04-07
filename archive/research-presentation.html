@@ -57,13 +57,13 @@ What are the effects of a natural setting on psychedelic experiences?
 				<section>
 <div id="chart-c"></div>
 				</section>
-				<section data-background-image="./image/equitable-treatment.jpg" data-background-size="98%">
+				<section data-background-image="./image/beauty-of-alone.jpg" data-background-size="30%" data-background-position="center 70%">
 					<div>
 						<p>
 <strong>References</strong>
 						</p>
 						<p>
-Gibson, E., Carranza, J., Meadows, K & Larson, M. P. (2023). <em>Research Methods: We Administered a Survey and Captured Data</em><br />[<a class="plain" href="./research-presentation.pdf">Unpublished manuscript</a>]. Transpersonal Wilderness Therapy, Naropa University.
+Gibson, E., Carranza, J., Meadows, K & Larson, M. P. (2023). <em>Research Methods: We Administered a Survey and Captured Data</em> [<a class="plain" href="./research-presentation.pdf">Unpublished manuscript</a>]. Transpersonal Wilderness Therapy, Naropa University.
 						</p>
 					</div>
 					<a href="/">
@@ -176,10 +176,9 @@ Gibson, E., Carranza, J., Meadows, K & Larson, M. P. (2023). <em>Research Method
 				scattermode: 'group',
 				scattergap: 0.5,
 				title: 'Grouped by Experience',
-				width: 900,
-				height: 600,
-				yaxis: { title: 'Ratings', range: [0.5, 5.5] }
-			})
+				xaxis: { zeroline: true },
+				yaxis: { title: 'Ratings', range: [0.5, 5.5], zeroline: true }
+			}, { responsive: true })
 
 			<!-- ========================================================= -->
 
@@ -189,13 +188,13 @@ Gibson, E., Carranza, J., Meadows, K & Larson, M. P. (2023). <em>Research Method
 			let regex = /[^0-9a-z ]/gi
 			let nixed = [
 				'','a','an','the','of','it','in','and','or','by','on',
-				'while', 'was', 'there', 'with', 'to', 'for'
+				'while', 'was', 'there', 'with', 'to', 'for', 'na'
 			]
 			let rank = {}
 			function transform (text) {
 				let words = text.split(' ').reduce((o, x) => {
 					if (nixed.indexOf(x) === -1) {
-						rank[x] = { word: x, count: (rank[x] || {count:0}).count +1 }
+						rank[x] = { word: x, count: ((rank[x] || {count:0}).count +1) }
 						o.push(x)
 					}
 					return o
@@ -263,9 +262,9 @@ Gibson, E., Carranza, J., Meadows, K & Larson, M. P. (2023). <em>Research Method
 			Plotly.newPlot(chartB, plotB, {
 				title: 'Word Weight',
 				showlegend: false,
-				width: 900,
-				height: 600,
-			})
+				xaxis: { showgrid: false, showline: false, showticklabels: false, zeroline: false },
+				yaxis: { showgrid: false, showline: false, showticklabels: false, zeroline: false },
+			}, { responsive: true })
 
 			<!-- ========================================================= -->
 
@@ -285,10 +284,11 @@ Gibson, E., Carranza, J., Meadows, K & Larson, M. P. (2023). <em>Research Method
 				barmode: 'relative',
 				showlegend: false,
 				title: 'Grouped by Codes',
-				yaxis: { title: 'Samples' },
-				width: 900,
-				height: 600,
-			})
+				yaxis: {
+					showticklabels: false,
+					title: 'Samples'
+				},
+			}, { responsive: true })
 		</script>
 	</body>
 </html>
