@@ -45,7 +45,9 @@ We Administered a Survey and Captured Data
 Some of the Wilderness Cohort were wondering....
 					</div>
 					<div class="r-fit-text">
+<br /><em>
 What are the effects of a natural setting on psychedelic experiences?
+</em>
 					</div>
 				</section>
 				<section>
@@ -56,6 +58,9 @@ What are the effects of a natural setting on psychedelic experiences?
 				</section>
 				<section>
 <div id="chart-c"></div>
+				</section>
+				<section>
+<div id="chart-d"></div>
 				</section>
 				<section data-background-image="./image/beauty-of-alone.jpg" data-background-size="30%" data-background-position="center 70%">
 					<div>
@@ -90,9 +95,11 @@ Gibson, E., Carranza, J., Meadows, K & Larson, M. P. (2023). <em>Research Method
 			let chartA = document.getElementById('chart-a')
 			let chartB = document.getElementById('chart-b')
 			let chartC = document.getElementById('chart-c')
+			let chartD = document.getElementById('chart-d')
 			let plotA = []
 			let plotB = []
 			let plotC = []
+			let plotD = []
 			let quantitative = {
 				experience: 'Have you taken psychedelics?',
 				resource: 'Do you use nature as a psychological resource?',
@@ -182,6 +189,72 @@ Gibson, E., Carranza, J., Meadows, K & Larson, M. P. (2023). <em>Research Method
 
 			<!-- ========================================================= -->
 
+			scale = [ 'meaning', 'impact', 'resource' ]
+			trace = {
+				meaning: {
+					name: 'Meaning',
+					type: 'scatter',
+					mode: 'markers+text',
+					marker: { size: 12 },
+					textposition: 'bottom center',
+					text: Array(5),
+					x: [ 1, 2, 3, 4, 5 ],
+					y: [[],[],[],[],[]],
+				},
+				impact: {
+					name: 'Impact',
+					type: 'scatter',
+					mode: 'markers+text',
+					marker: { size: 12 },
+					textposition: 'bottom center',
+					text: Array(5),
+					x: [ 1, 2, 3, 4, 5 ],
+					y: [[],[],[],[],[]],
+				},
+				resource: {
+					name: 'Resource',
+					type: 'scatter',
+					mode: 'markers+text',
+					marker: { size: 12 },
+					textposition: 'bottom center',
+					text: Array(5),
+					x: [ 1, 2, 3, 4, 5 ],
+					y: [[],[],[],[],[]],
+				}
+			}
+			data.forEach(response => {
+				let r = {
+					experience: response[quantitative.experience] === 'Yes' ? 5 : 1,
+					resource: response[quantitative.resource] === 'Yes' ? 5 : 1,
+					connection: response[quantitative.connection],
+					meaning: response[quantitative.meaning],
+					impact: response[quantitative.impact],
+				}
+				let i = (r.connection - 1)
+				trace.meaning.y[i].push(r.meaning)
+				trace.impact.y[i].push(r.impact)
+				trace.resource.y[i].push(r.resource)
+			})
+            scale.forEach(q => {
+				[0,1,2,3,4].forEach(z => {
+					trace[q].text[z] = trace[q].y[z].length
+					trace[q].y[z] =
+						trace[q].y[z].reduce((o, x) => o + x, 0) / trace[q].text[z]
+				})
+			})
+console.log(JSON.stringify({trace}, null, 2))
+console.log({trace})
+			plotB.push(trace.meaning, trace.impact, trace.resource)
+			Plotly.newPlot(chartB, plotB, {
+				scattermode: 'group',
+				scattergap: 0.5,
+				title: 'Grouped by Connection',
+				xaxis: { title: 'Connection', range: [0.5, 5.5] },
+				yaxis: { title: 'Ratings', range: [0.5, 5.5] }
+			}, { responsive: true })
+
+			<!-- ========================================================= -->
+
 			let words = hash.find(x => Array.isArray(x[qualitative.setting]))
 			let text = words[qualitative.setting]
 			let counts = text.map(x => x.split(' ').length)
@@ -258,17 +331,17 @@ Gibson, E., Carranza, J., Meadows, K & Larson, M. P. (2023). <em>Research Method
 				textposition: 'bottom center',
 				text: rank.slice(10,15).map(x => x.word)
 			}
-			plotB.push(a, b, c)
-			Plotly.newPlot(chartB, plotB, {
-				title: 'Word Weight',
+			plotC.push(a, b, c)
+			Plotly.newPlot(chartC, plotC, {
 				showlegend: false,
+				title: 'Word Weight',
 				xaxis: { showgrid: false, showline: false, showticklabels: false, zeroline: false },
 				yaxis: { showgrid: false, showline: false, showticklabels: false, zeroline: false },
 			}, { responsive: true })
 
 			<!-- ========================================================= -->
 
-			plotC = codes.reduce((o, x) => {
+			plotD = codes.reduce((o, x) => {
 				let labels = x.sample.map(z => x.name)
 				let counts = x.sample.map(z => x.sample.length)
 				o.push({
@@ -280,7 +353,7 @@ Gibson, E., Carranza, J., Meadows, K & Larson, M. P. (2023). <em>Research Method
 				})
 				return o
 			}, [])
-			Plotly.newPlot(chartC, plotC, {
+			Plotly.newPlot(chartD, plotD, {
 				barmode: 'relative',
 				showlegend: false,
 				title: 'Grouped by Codes',
