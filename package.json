@@ -1,6 +1,6 @@
 {
   "name": "presentation-archive",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Published Papers and Slides",
   "author": "gurumojo",
   "license": "ISC",
@@ -13,7 +13,7 @@
     "reveal.js": "4.x"
   },
   "engines": {
-    "node": "18.x"
+    "node": "22.x"
   },
   "scripts": {
     "demo": "heroku local",
