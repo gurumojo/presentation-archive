@@ -1,0 +1,153 @@
+
+			body {
+				background-position-x: 50%;
+				background-repeat: no-repeat;
+				background-size: 130%;
+			}
+			h1 {
+				font-size: 2.75em;
+				margin-left: .5em;
+			}
+			h2 {
+				font-size: 2em;
+			}
+			p, blockquote {
+				font-size: 1.25em;
+				margin-top: 1em;
+			}
+			blockquote {
+				font-style: italic;
+				padding-left: 1em;
+			}
+			ul {
+				margin-top: 2em;
+				margin-left: 2em;
+			}
+			li {
+				margin-top: 1em;
+			}
+			a {
+				color: white;
+				text-decoration: none;
+			}
+			a:hover {
+				color: yellow;
+				text-decoration: underline;
+			}
+			header, section, footer {
+
+			}
+			header, footer {
+				background-color: grey;
+				padding: 1em;
+			}
+			header {
+				position: fixed;
+				right: 0;
+				top: 0;
+				left: 0;
+			}
+			header img {
+				position: fixed;
+				top: .75em;
+				right: .75em;
+				max-height: 3.75em;
+			}
+			main {
+				position: fixed;
+				top: 5.25em;
+				right: 0em;
+				bottom: 3em;
+				left: 0em;
+			}
+			article {
+				padding: 3em 2em;
+				position: fixed;
+			}
+			article.bottom-left {
+				bottom: 3em;
+				left: 0em;
+			}
+			article.bottom-right {
+				bottom: 3em;
+				right: 0em;
+			}
+			article.top-15 {
+				top: 15%;
+			}
+			article.top-25 {
+				top: 25%;
+			}
+			article.right-50 {
+				right: 50%;
+			}
+			article.right-60 {
+				right: 60%;
+			}
+			article.right-65 {
+				right: 65%;
+			}
+			article.bottom-15 {
+				bottom: 15%;
+			}
+			article.bottom-25 {
+				bottom: 25%;
+			}
+			article.left-50 {
+				left: 50%;
+			}
+			article.left-60 {
+				left: 60%;
+			}
+			article.left-65 {
+				left: 65%;
+			}
+			article.wide {
+				width: 96%
+			}
+			div {
+				background-color: black;
+				color: white;
+				padding: 3em 2em;
+				opacity: 80%;
+			}
+			#booking div {
+				background-color: white;
+				color: black;
+				padding: 3em 2em;
+				opacity: 90%;
+			}
+			aside {
+				
+			}
+			section {
+				
+			}
+			#booking section {
+				display: inline-block;
+				margin: .7em;
+				width: 48%;
+			}
+			footer {
+				position: fixed;
+				right: 0;
+				bottom: 0;
+				left: 0;
+			}
+			footer div {
+				float: left;
+				padding-left: 2em;
+			}
+			footer ul {
+				float: right;
+				margin: 0;
+			}
+			footer li {
+				float: left;
+				margin-top: 0;
+				margin-left: 1.5em;
+			}
+			.em {
+				font-style: italic;
+			}
+
