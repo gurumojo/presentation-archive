@@ -181,6 +181,33 @@
 		p, blockquote {
 			font-size: 1em;
 		}
+		main {
+			top: 4em;
+			bottom: 8em;
+		}
+		article {
+			overflow: scroll;
+			bottom: 8em;
+			top: 5em;
+		}
+		article#index {
+			top: 15em;
+		}
+		article#biography {
+			top: 15em;
+		}
+		article.left-60, article.left-50 {
+			left: 0;
+		}
+		article.right-60, article.right-50 {
+			right: 0;
+		}
+		article.top-15 {
+			top: 4em;
+		}
+		article.bottom-right {
+			bottom: 8em;
+		}
 		article.bottom-left {
 			bottom: 10em;
 		}
