@@ -117,11 +117,26 @@
 		padding: 3em 2em;
 		opacity: 90%;
 	}
+	table {
+		font-size: 1.5em;
+		margin-left: 8%;
+		width: 84%;
+	}
+	th, td {
+		border-bottom: 1px solid;
+		padding: .25em .5em;
+	}
+	td.resource {
+		width: 7em;
+	}
 	aside {
 		
 	}
 	section {
 		
+	}
+	ul.resource li a:hover {
+		background-color: indigo;
 	}
 	#booking section {
 		display: inline-block;
@@ -194,22 +209,63 @@
 			top: 15em;
 		}
 		article#biography {
-			top: 15em;
-		}
-		article.left-60, article.left-50 {
-			left: 0;
-		}
-		article.right-60, article.right-50 {
-			right: 0;
+			top: 17em;
 		}
 		article.top-15 {
 			top: 4em;
+		}
+		article.right-60, article.right-50 {
+			right: 0;
 		}
 		article.bottom-right {
 			bottom: 8em;
 		}
 		article.bottom-left {
 			bottom: 10em;
+		}
+		article.bottom-25 {
+			bottom: 10em;
+		}
+		article.left-60, article.left-50 {
+			left: 0;
+		}
+		article.wide {
+			width: inherit;
+		}
+		blockquote {
+			text-align: left;
+		}
+		ul.link {
+			margin-left: 0;
+		}
+		ul.link li {
+			border: 1px solid;
+			list-style-type: none;
+			margin: .25em;
+		}
+		ul.link li a {
+			display: block;
+			padding: .4em;
+		}
+		ul.link li:hover {
+			color: purple;
+			background-color: indigo;
+		}
+		ul.resource {
+			margin-left: .5em;
+		}
+		ul.resource li {
+			clear: both;
+		}
+		ul.resource li span {
+			float: right;
+			padding-bottom: 1em;
+		}
+		ul.resource li a {
+			border: 1px solid;
+			display: inline-block;
+			margin: .5em;
+			padding: .4em;
 		}
 	}
 
@@ -226,6 +282,25 @@
 			background-position-x: 50%;
 			background-repeat: no-repeat;
 			background-size: 130%;
+		}
+		ul.resource {
+			margin-left: 1em;
+		}
+		ul.resource li {
+			display: inline-block;
+			vertical-align: top;
+			width: 30%;
+			margin-right: 3%;
+		}
+		ul.resource li span {
+			float: right;
+			padding-bottom: 1em;
+		}
+		ul.resource li a {
+			border: 1px solid;
+			display: inline-block;
+			margin: .5em;
+			padding: .4em;
 		}
 	}
 
